@@ -1,20 +1,31 @@
 #include "vex.h"
 
 void default_constants(){
-  chassis.set_drive_constants(10, 0.6, 0, 10, 0);
-  chassis.set_heading_constants(6, .4, 0, 1, 0);
-  chassis.set_turn_constants(10, .4, .035, 3, 15);
+  chassis.set_drive_constants(11, 1.285, 0, 1, 0);
+  chassis.set_heading_constants(8, .4, 0, 5, 0);
+  chassis.set_turn_constants(8, .4, 0.35, 5, 15);
   chassis.set_swing_constants(12, .3, .001, 2, 15);
-  chassis.set_drive_exit_conditions(2, 60, 1500);
-  chassis.set_turn_exit_conditions(1, 300, 1500);
-  chassis.set_swing_exit_conditions(1, 300, 1500);
+  chassis.set_drive_exit_conditions(2, 60, 2000);
+  chassis.set_turn_exit_conditions(1, 300, 2000);
+  chassis.set_swing_exit_conditions(1, 300, 2000);
+  // chassis.set_drive_constants(10, 0.6, 0, 10, 0);
+  // chassis.set_heading_constants(6, .4, 0, 1, 0);
+  // chassis.set_turn_constants(10, .4, .035, 3, 15);
+  // chassis.set_swing_constants(12, .3, .001, 2, 15);
+  // chassis.set_drive_exit_conditions(2, 60, 2000);
+  // chassis.set_turn_exit_conditions(1, 300, 2000);
+  // chassis.set_swing_exit_conditions(1, 300, 2000);
 }
 
 void odom_constants(){
   default_constants();
   chassis.heading_max_voltage = 10;
-  chassis.drive_max_voltage = 8;
+  chassis.drive_max_voltage = 11;
   chassis.drive_settle_error = 3;
+  // default_constants();
+  // chassis.heading_max_voltage = 10;
+  // chassis.drive_max_voltage = 8;
+  // chassis.drive_settle_error = 3;
 }
 
 void drive_test(){
@@ -46,9 +57,9 @@ void full_test(){
   chassis.turn_to_angle(0);
 }
 
-void odom_test(){
+int odom_test(){
   chassis.set_coordinates(0, 0, 0);
-  while(1){
+  while(1) {
     Brain.Screen.clearScreen();
     Brain.Screen.printAt(0,50, "X: %f", chassis.get_X_position());
     Brain.Screen.printAt(0,70, "Y: %f", chassis.get_Y_position());
@@ -57,6 +68,16 @@ void odom_test(){
     Brain.Screen.printAt(0,130, "SidewaysTracker: %f", chassis.get_SidewaysTracker_position());
     task::sleep(20);
   }
+  return 0;
+}
+
+void odom_forward_test(){
+  odom_constants();
+  chassis.set_coordinates(0, 0, 0);
+  chassis.turn_to_point(0, 100);
+  chassis.drive_to_point(0, 24);
+    chassis.turn_to_point(0, 100);
+
 }
 
 void tank_odom_test(){

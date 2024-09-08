@@ -9,6 +9,8 @@ extern brain Brain;
 // extern digital_out Right_Wing;
 // extern limit triballsensor;
 extern digital_out Claw;
+extern digital_out ArmPump;
+extern digital_out HangPump;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

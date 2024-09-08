@@ -236,6 +236,7 @@ void auton_red_right() {
   chassis.set_coordinates(-15, -24, 270);
   chassis.turn_to_point(-21, -58);
   Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
   chassis.drive_to_point(-21, -52);
   //ring 2
   wait(0.5, sec);
@@ -334,50 +335,72 @@ void auton_blue_right() {
 
 
 void auton_blue_left() {
-  chassis.set_heading(270);
-  chassis.set_coordinates(-60, 24, 270);
-  chassis.set_heading(270);
+  chassis.set_heading(90);
+  chassis.set_coordinates(60, 24, 90);
+  chassis.set_heading(90);
   Claw.set(false); //change later after sayansh tests it
-  chassis.turn_to_point(-200, 22);
-  chassis.drive_to_point(-15, 22);
+  chassis.turn_to_point(200, 22);
+  chassis.drive_to_point(16, 23);
   //Get the mobile goal
   
   Claw.set(true);
   wait(0.5, sec);
 
   //chassis.set_coordinates(-15, 24,270);
-  chassis.turn_to_point(-21, 58);
+  chassis.turn_to_point(21, 58);
   Intake.spin(forward, 100, pct);
-  chassis.drive_to_point(-21, 50);
+  Intake2.spin(forward, 100, pct);
+  chassis.drive_to_point(21, 52);
   //ring 2
   wait(0.5, sec);
-  chassis.drive_distance(-10);
+  chassis.drive_distance(-12);
   chassis.turn_to_point(2,50);
   chassis.drive_to_point(2,50);
+  chassis.drive_distance(10);
+  wait(2, sec);
+ 
+  //ring 3
+  chassis.turn_to_point(-8, 32);
+  chassis.drive_distance(-20);
+  chassis.turn_to_point(6, 50);
+  chassis.drive_distance(20);
+}
+
+void auton_rush_blue_left() {
+  
 }
 
 
 
-
-
 void auton_red_left()  {
+  vex::task runOdom(odom_test);
+  // runOdom.stop();
+  // odom_test();
   chassis.set_heading(270);
   chassis.set_coordinates(-60, 24, 270);
   chassis.set_heading(270);
   Claw.set(false); 
   chassis.turn_to_point(-200, 22);
   chassis.drive_to_point(-15, 22);
+  // odom_test();
   //Get the mobile goal
-  
+//  runOdom.resume();
+//   runOdom.stop();
   Claw.set(true);
   wait(0.5, sec);
+  // odom_test();
   //chassis.set_coordinates(-15, 24,270);
   chassis.turn_to_point(-21, 58);
   Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
   chassis.drive_to_point(-21, 50);
+//  runOdom.resume();
+// runOdom.stop();
+  // odom_test();
   
   //ring 2
-  Intake.spin(forward, 100, pct);
+  //Intake.spin(forward, 100, pct);
+  //Intake2.spin(forward, 100, pct);
   wait(0.5, sec);
   chassis.drive_distance(-10);
   chassis.turn_to_point(1,50);
@@ -385,6 +408,9 @@ void auton_red_left()  {
   chassis.drive_distance(-7);
   chassis.turn_to_point(-1,54);
   chassis.drive_to_point(-1,54);
+  odom_test();
+  //runOdom.resume();
+  //runOdom.stop();
 
   //chassis.drive_distance(-22);
   
@@ -418,6 +444,7 @@ void firstStake() {
   chassis.drive_to_point(-47, -24);
   Claw.set(true);
   Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
   chassis.drive_to_point(-24, -24);
   chassis.turn_to_point(-23, -47);
   chassis.drive_to_point(-23, -47);
@@ -442,6 +469,7 @@ void secondStake() {
   chassis.drive_to_point(-47, 24);
   Claw.set(true);
   Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
   chassis.turn_to_point(-23, 23);
   chassis.drive_to_point(-23, 23);
   chassis.turn_to_point(-23, 47);
@@ -480,7 +508,9 @@ void thirdStake() {
 
 
 void autonomous(void) {
-  firstStake();
+  // auton_blue_left();
+  odom_forward_test();
+
  // tank_odom_test();
   // auton_red_left();
   //chassis.set_coordinates(0, 0, 0);
@@ -559,6 +589,8 @@ void usercontrol(void) {
   bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
   bool Claw_toggle = false; 
+  bool Arm_toggle = false;
+  bool Hang_toggle = false;
 
 
 
@@ -627,6 +659,40 @@ void usercontrol(void) {
         Claw_toggle = !Claw_toggle;
         waitUntil(!Controller1.ButtonA.pressing());
       }
+     
+
+// up and down button
+      if (Arm_toggle) {             
+        ArmPump.set(true);
+      } else {
+        ArmPump.set(false);
+      }
+
+      if (Controller1.ButtonUp.pressing()) {
+        Arm_toggle = true;
+        waitUntil(!Controller1.ButtonUp.pressing());
+      }
+      else if (Controller1.ButtonDown.pressing()) {
+        Arm_toggle = false;
+        waitUntil(!Controller1.ButtonDown.pressing());
+      }
+
+
+// y button
+      if (Hang_toggle) {             
+        HangPump.set(true);
+      } else {
+        HangPump.set(false);
+      }
+
+      if (Controller1.ButtonY.pressing()) {
+        Hang_toggle = !Hang_toggle;
+        waitUntil(!Controller1.ButtonY.pressing());
+      }
+     
+
+
+
 
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo

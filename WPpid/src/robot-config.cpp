@@ -16,6 +16,8 @@ brain  Brain;
 
 
 digital_out Claw = digital_out(Brain.ThreeWirePort.A);
+digital_out ArmPump = digital_out(Brain.ThreeWirePort.B);
+digital_out HangPump = digital_out(Brain.ThreeWirePort.C);
 
 // VEXcode generated functions
 
