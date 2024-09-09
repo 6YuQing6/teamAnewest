@@ -3,7 +3,7 @@
 
 
 Download:
-- git clone http:/link
+- git clone [http:/link](https://github.com/6YuQing6/teamAnewest.git)
 
 Pull latest version before pushing!!!!!!!!!
 
