@@ -1,4 +1,6 @@
+
 ## How to USE GIT
+
 
 Download:
 - git clone http:/link
@@ -6,6 +8,7 @@ Download:
 Pull latest version before pushing!!!!!!!!!
 
 Upload:
+- open your terminal inside of team a folder
 - git pull
 - git status
 - git add .
