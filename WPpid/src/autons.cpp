@@ -1,26 +1,26 @@
 #include "vex.h"
 
 void default_constants(){
-  chassis.set_drive_constants(11, 1.285, 0, 1, 0);
-  chassis.set_heading_constants(8, .4, 0, 5, 0);
-  chassis.set_turn_constants(8, .4, 0.35, 5, 15);
+  chassis.set_drive_constants(12, 0.6, 0.02, 4.8, 0);
+  // chassis.set_heading_constants(6, .4, 0, 1, 0);
+  // chassis.set_turn_constants(9, .4, 0.01, 4, 15);
+  // chassis.set_swing_constants(12, .3, .001, 2, 15);
+  // chassis.set_drive_exit_conditions(2, 60, 2000);
+  // chassis.set_turn_exit_conditions(1, 300, 3000);
+  // chassis.set_swing_exit_conditions(1, 300, 2000);
+  // chassis.set_drive_constants(10, 0.6, 0, 10, 0);
+  chassis.set_heading_constants(6, .4, 0, 1, 0);
+  chassis.set_turn_constants(10, .4, .035, 3, 15);
   chassis.set_swing_constants(12, .3, .001, 2, 15);
   chassis.set_drive_exit_conditions(2, 60, 2000);
   chassis.set_turn_exit_conditions(1, 300, 2000);
   chassis.set_swing_exit_conditions(1, 300, 2000);
-  // chassis.set_drive_constants(10, 0.6, 0, 10, 0);
-  // chassis.set_heading_constants(6, .4, 0, 1, 0);
-  // chassis.set_turn_constants(10, .4, .035, 3, 15);
-  // chassis.set_swing_constants(12, .3, .001, 2, 15);
-  // chassis.set_drive_exit_conditions(2, 60, 2000);
-  // chassis.set_turn_exit_conditions(1, 300, 2000);
-  // chassis.set_swing_exit_conditions(1, 300, 2000);
 }
 
 void odom_constants(){
   default_constants();
   chassis.heading_max_voltage = 10;
-  chassis.drive_max_voltage = 11;
+  chassis.drive_max_voltage = 12;
   chassis.drive_settle_error = 3;
   // default_constants();
   // chassis.heading_max_voltage = 10;
@@ -29,10 +29,9 @@ void odom_constants(){
 }
 
 void drive_test(){
-  chassis.drive_distance(6);
-  chassis.drive_distance(12);
-  chassis.drive_distance(18);
-  chassis.drive_distance(-36);
+  odom_constants();
+  chassis.set_coordinates(0, 0, 0);
+  chassis.turn_to_point(0,-180);
 }
 
 void turn_test(){
@@ -58,7 +57,7 @@ void full_test(){
 }
 
 int odom_test(){
-  chassis.set_coordinates(0, 0, 0);
+  // chassis.set_coordinates(0, 0, 0);
   while(1) {
     Brain.Screen.clearScreen();
     Brain.Screen.printAt(0,50, "X: %f", chassis.get_X_position());
@@ -74,9 +73,10 @@ int odom_test(){
 void odom_forward_test(){
   odom_constants();
   chassis.set_coordinates(0, 0, 0);
-  chassis.turn_to_point(0, 100);
+ 
+  chassis.turn_to_angle(0);
   chassis.drive_to_point(0, 24);
-    chassis.turn_to_point(0, 100);
+chassis.turn_to_angle(0);
 
 }
 

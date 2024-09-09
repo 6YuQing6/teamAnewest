@@ -129,7 +129,7 @@ PORT3,     -PORT4,
 PORT17, //Will do later
 
 //Input the Forward Tracker diameter (reverse it to make the direction switch):
--2.75,
+-2,
 
 //Input Forward Tracker center distance (a positive distance corresponds to a tracker on the right side of the robot, negative is left.)
 //For a zero tracker tank drive with odom, put the positive distance from the center of the robot to the right side of the drive.
@@ -141,7 +141,7 @@ PORT17, //Will do later
 PORT4,
 
 //Sideways tracker diameter (reverse to make the direction switch):
-2.75,
+2,
 
 //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
 3.125
@@ -210,84 +210,7 @@ void pre_auton(void) {
   // chassis.drive_to_point(-10.7, 12.5);
 //}
 
-void auton_red_right() {
-  // chassis.set_drive_constants(10, 1.5, 0, 10, 0);
-  // chassis.set_heading_constants(6, .4, 0, 1, 0);
-  // chassis.set_turn_constants(11, .3, .03, 3, 15);
-  // chassis.set_swing_constants(12, .3, .001, 2, 15);
-  // chassis.set_drive_exit_conditions(2, 60, 5000);
-  // chassis.set_turn_exit_conditions(1, 300, 3000);
-  // chassis.set_swing_exit_conditions(1, 300, 3000);
-  // chassis.heading_max_voltage = 10;
-  // chassis.drive_max_voltage = 8;
-  // chassis.drive_settle_error = 3;
-  //Intake.spin(forward, 100, pct);
 
-  chassis.set_heading(270);
-  chassis.set_coordinates(-60, -24, 270);
-  chassis.set_heading(270);
-  Claw.set(false); //change later after sayansh tests it
-  chassis.turn_to_point(-200, -22);
-  chassis.drive_to_point(-15, -22);
-  //Get the mobile goal
-  
-  Claw.set(true);
-  wait(0.5, sec);
-  chassis.set_coordinates(-15, -24, 270);
-  chassis.turn_to_point(-21, -58);
-  Intake.spin(forward, 100, pct);
-  Intake2.spin(forward, 100, pct);
-  chassis.drive_to_point(-21, -52);
-  //ring 2
-  wait(0.5, sec);
-  //chassis.drive_distance(-22);
-  
-  //Intake.stop();
-  
-  
-  chassis.turn_to_point(-19, -37);
-  wait(0.5, sec);
-  Claw.set(false);
-  wait(0.3, sec);
-  chassis.drive_distance(5);
-  chassis.turn_to_point(-40, -34);
-  chassis.drive_distance(-24);
-  Intake.stop();
-  Claw.set(true);
-  wait(0.5, sec);
-  chassis.turn_to_point(-5, -13);
-  chassis.drive_distance(25);
-
-  Arm.spin(reverse, 40, pct);
-  
-
-
-  //chassis.drive_distance(10);
-
-
-  /*
-  //double angle1 = atan((-2.378) - chassis.odom.X_position /  (-45.593) - chassis.odom.Y_position);
-  Brain.Screen.print(angle1);
-  chassis.turn_to_angle(angle1 + 180);
-  chassis.drive_distance(-20);
-  chassis.drive_to_point(-2.378,-45.593);
-  Claw.set(true);
-  chassis.turn_to_point(-11, -17);
-  chassis.drive_to_point(-11, -17);
-  */
-
-
-
-
-  /*
-  chassis.turn_to_point(-47,0);
-  Intake.spin(forward, 100, pct);
-  chassis.drive_to_point(-47, 0);
-  wait(1, sec);
-  Intake.stop();
-  */
-  
-}
 
 
 void auton_blue_right() {
@@ -335,9 +258,9 @@ void auton_blue_right() {
 
 
 void auton_blue_left() {
-  chassis.set_heading(90);
-  chassis.set_coordinates(60, 24, 90);
-  chassis.set_heading(90);
+  chassis.set_heading(270);
+  chassis.set_coordinates(60, 24, 270);
+  chassis.set_heading(270);
   Claw.set(false); //change later after sayansh tests it
   chassis.turn_to_point(200, 22);
   chassis.drive_to_point(16, 23);
@@ -366,22 +289,101 @@ void auton_blue_left() {
   chassis.drive_distance(20);
 }
 
+double getACurrPos2Point(double x, double y){
+  return atan2(chassis.get_Y_position() - y, chassis.get_X_position() - x);
+}
+
 void auton_rush_blue_left() {
+  chassis.set_coordinates(60, 24, 90);
+  chassis.set_heading(90);
+  Claw.set(false); //change later after sayansh tests it
+  chassis.turn_to_point(200, 22);
+  chassis.drive_distance(-40);
+  //Get the mobile goal
   
+  Claw.set(true);
+  wait(0.5, sec);
+  Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
+
+
+  //ring 2
+  chassis.turn_to_point(6, 41);
+  chassis.drive_to_point(6, 41);
+  chassis.drive_distance(-12);
+  chassis.turn_to_point(3,50);
+  chassis.drive_to_point(3,50);
+  chassis.drive_distance(-20);
+  wait(2, sec);
+ 
+  //ring 3
+  chassis.turn_to_point(22, 47);
+  chassis.drive_distance(22, 47);
+  
+
+
+
+
+
+  // //17.434
+  // chassis.set_coordinates(53, 27, 270 + 17.434);
+  // chassis.set_heading(270 + 17.434);
+
+  // Claw.set(false);
+
+  // //1st ring rush
+  // Intake2.spin(forward, 100, pct );
+  //   //chassis.set_heading(270 + 17.434);
+  // //chassis.turn_to_angle(270 + 1.434);
+  // chassis.drive_to_point(8.325, 41.014);
+  // chassis.turn_to_angle(325);
+  // Intake2.stop();
+  // chassis.drive_distance(-20);
+
+  // Claw.set(true);//sgettting goal
+  // wait(0.25, sec);
+  // Intake2.spin(forward, 100, pct );//scoing preload and 2nd ring
+  // Intake.spin(forward, 100, pct );
+
+  // //chassis.turn_to_angle(0); //getting 3rd ring
+  // chassis.turn_to_point(23.888, 46.809);
+  // chassis.drive_to_point(23.888, 40.683);
+
+  // chassis.turn_to_point(10.643, 49.127);
+  // chassis.drive_to_point(10.643, 49.127);
+
+  // Arm.spin(forward);
+  // chassis.turn_to_point(10.974, 12.537);
+  // chassis.drive_to_point(10.974, 12.537);
+
+
+
+
 }
 
 
 
 void auton_red_left()  {
-  vex::task runOdom(odom_test);
+  // Claw.set(false);
+  // chassis.set_coordinates(-50, 24, 90);
+  // chassis.drive_distance(-30);
+
+  // Claw.set(true);
+  // wait(0.2, sec);
+  // chassis.turn_to_point(-7.404, 37.703);
+  // chassis.drive_to_point(-7.404, 37.703);
+  
+
+  //vex::task runOdom(odom_test);
   // runOdom.stop();
   // odom_test();
   chassis.set_heading(270);
-  chassis.set_coordinates(-60, 24, 270);
+  chassis.set_coordinates(-50, 24, 270);
   chassis.set_heading(270);
   Claw.set(false); 
   chassis.turn_to_point(-200, 22);
-  chassis.drive_to_point(-15, 22);
+  chassis.drive_to_point(-15, 20);
+
   // odom_test();
   //Get the mobile goal
 //  runOdom.resume();
@@ -390,47 +392,114 @@ void auton_red_left()  {
   wait(0.5, sec);
   // odom_test();
   //chassis.set_coordinates(-15, 24,270);
-  chassis.turn_to_point(-21, 58);
+  chassis.turn_to_point(-5.583, 37.703);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
-  chassis.drive_to_point(-21, 50);
-//  runOdom.resume();
-// runOdom.stop();
-  // odom_test();
-  
-  //ring 2
-  //Intake.spin(forward, 100, pct);
-  //Intake2.spin(forward, 100, pct);
-  wait(0.5, sec);
-  chassis.drive_distance(-10);
-  chassis.turn_to_point(1,50);
-  chassis.drive_to_point(1,50);
-  chassis.drive_distance(-7);
-  chassis.turn_to_point(-1,54);
-  chassis.drive_to_point(-1,54);
-  odom_test();
-  //runOdom.resume();
-  //runOdom.stop();
+  chassis.drive_to_point(-5.583, 37.703);
 
-  //chassis.drive_distance(-22);
+  chassis.set_drive_exit_conditions(2, 60, 3000);
+
+  chassis.turn_to_point(-5.583, 49.127);
+  chassis.drive_to_point(-5.583, 49.127);
+
+  chassis.set_drive_exit_conditions(2, 60, 2000);
+
+  chassis.drive_distance(-15);
+
+  chassis.turn_to_point(-23.299, 44.14);
+  chassis.drive_to_point(-23.299, 44.14);
+
+  Arm.spin(reverse);
+
+  chassis.set_drive_exit_conditions(2, 60, 10000);
+  chassis.turn_to_point(-13.696, 12.206); 
+
+    chassis.set_drive_constants(6, 0.6, 0.02, 4.8, 0);
+
+  chassis.drive_distance(30000);
+}
+
+///////////////////////////////////////////////////////////////
+void auton_red_right() {
+  chassis.set_coordinates(-51.114, -28.69, 270);
+  Claw.set(false);
+  chassis.turn_to_point(-6.245, -43.094);
+  chassis.drive_to_point(-6.245, -43.094);
+
+  Claw.set(true);
+  Intake.spin(forward, 100, pct);
+  Intake2.spin(forward, 100, pct);
+
+  chassis.turn_to_point(-21.477, -46.405);
+  chassis.drive_to_point(-21.477, -46.405);
   
-  //Intake.stop();
+  chassis.turn_to_point(-58.565, -24.881);
+  chassis.drive_to_point(-58.565, -24.881);
+
+
+
+  // chassis.set_coordinates(-51, -28, 270);
+  // Claw.set(false); //change later after sayansh tests it
+  // chassis.turn_to_point(-200, -22);
+  // chassis.drive_to_point(-15, -22);
+  // //Get the mobile goal
   
-  
-  // chassis.turn_to_point(-19, 37);
+  // Claw.set(true);
   // wait(0.5, sec);
-  // //Claw.set(false);
+  // chassis.set_coordinates(-15, -24, 270);
+  // chassis.turn_to_point(-21, -58);
+  // Intake.spin(forward, 100, pct);
+  // Intake2.spin(forward, 100, pct);
+  // chassis.drive_to_point(-21, -52);
+  // //ring 2
+  // wait(0.5, sec);
+  // //chassis.drive_distance(-22);
+  
+  // //Intake.stop();
+  
+  
+  // chassis.turn_to_point(-19, -37);
+  // wait(0.5, sec);
+  // Claw.set(false);
   // wait(0.3, sec);
   // chassis.drive_distance(5);
-  // chassis.turn_to_point(-40, 34);
+  // chassis.turn_to_point(-40, -34);
   // chassis.drive_distance(-24);
   // Intake.stop();
   // Claw.set(true);
   // wait(0.5, sec);
-  // chassis.turn_to_point(-5, 13);
+  // chassis.turn_to_point(-5, -13);
   // chassis.drive_distance(25);
 
   // Arm.spin(reverse, 40, pct);
+  
+
+
+  //chassis.drive_distance(10);
+
+
+  /*
+  //double angle1 = atan((-2.378) - chassis.odom.X_position /  (-45.593) - chassis.odom.Y_position);
+  Brain.Screen.print(angle1);
+  chassis.turn_to_angle(angle1 + 180);
+  chassis.drive_distance(-20);
+  chassis.drive_to_point(-2.378,-45.593);
+  Claw.set(true);
+  chassis.turn_to_point(-11, -17);
+  chassis.drive_to_point(-11, -17);
+  */
+
+
+
+
+  /*
+  chassis.turn_to_point(-47,0);
+  Intake.spin(forward, 100, pct);
+  chassis.drive_to_point(-47, 0);
+  wait(1, sec);
+  Intake.stop();
+  */
+  
 }
   
 
@@ -507,9 +576,11 @@ void thirdStake() {
 }
 
 
-void autonomous(void) {
+void autonomous(void) 
+{
+  //vex::task runOdom(odom_test);
   // auton_blue_left();
-  odom_forward_test();
+  auton_red_left();
 
  // tank_odom_test();
   // auton_red_left();
