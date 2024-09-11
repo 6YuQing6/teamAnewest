@@ -580,12 +580,13 @@ void firstStake() {
   chassis.set_heading(270);
 
   // grab stake
-  chassis.drive_to_point(-47, -24);
+  chassis.drive_to_point(-55, -24);
   Claw.set(true);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
 
   // grab 1st ring
+  chassis.turn_to_point(-24, -24);
   chassis.drive_to_point(-24, -24);
 
   // grab 2nd ring
