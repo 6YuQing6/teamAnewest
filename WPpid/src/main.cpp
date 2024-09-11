@@ -211,42 +211,98 @@ void pre_auton(void) {
 //}
 
 
-
+double getACurrPos2Point(double x, double y){
+  return atan2(chassis.get_Y_position() - y, chassis.get_X_position() - x) + 90;
+}
 
 void auton_blue_right() {
-  // chassis.set_drive_constants(10, 1.5, 0, 10, 0);
-  chassis.set_heading(90);
-  chassis.set_coordinates(60, -24, 90);
-  chassis.set_heading(90);
-  Claw.set(false); //change later after sayansh tests it
-  chassis.turn_to_point(200, -23);
-  chassis.drive_to_point(15, -23);
-  //Get the mobile goal
-  
-  
-  Claw.set(true);
-  wait(0.5, sec);
-  chassis.set_coordinates(15, -24, 90);
-  chassis.turn_to_point(21, -58);
-  Intake.spin(forward, 100, pct);
-  chassis.drive_to_point(21, -53);
-  //ring 2
-  wait(0.5, sec);
-  
-  chassis.turn_to_point(19, -37);
-  wait(0.5, sec);
-  Claw.set(false);
-  wait(0.3, sec);
-  chassis.drive_distance(5);
-  chassis.turn_to_point(40, -34);
-  chassis.drive_distance(-24);
-  Intake.stop();
-  Claw.set(true);
-  wait(0.5, sec);
-  chassis.turn_to_point(5, -13);
-  chassis.drive_distance(25);
+  chassis.set_coordinates(-50, -24, 270);
+  chassis.set_heading(270);
 
-  Arm.spin(reverse, 40, pct);
+  // grabs first stake
+  chassis.turn_to_point(-200, -24);
+  chassis.drive_distance(-24);
+  Claw.set(true);
+
+
+  wait(0.3, sec);
+  // grabs red ring
+  chassis.turn_to_point(-23, -47);
+  Intake.spin(fwd, 100, pct);
+  Intake2.spin(fwd, 100, pct);
+  chassis.drive_to_point(-23, -47);
+
+  // lets go of first stake
+  chassis.turn_to_point(-15, -35);
+  chassis.set_drive_constants(12, 1, 0.02, 2, 0);
+  chassis.drive_distance(-15);
+  Claw.set(false);
+  Intake.stop();
+  Intake2.stop();
+  chassis.drive_distance(10);
+  chassis.set_drive_constants(12, 0.6, 0.02, 4.8, 0);
+
+  // grabs second stake
+  // chassis.turn_to_point(-58.896, -44.087);
+  chassis.turn_to_angle(getACurrPos2Point(0, -55.372)+186);
+  chassis.drive_distance(-24.5);
+  Claw.set(true);
+  Arm.spin(reverse, 100, pct);
+  wait(0.3, sec);
+
+  // grabs second ring
+  // chassis.turn_to_point(-50.121, -15.279);
+  // Intake.spin(reverse, 100, pct);
+  // Intake2.spin(reverse, 100, pct);
+  // chassis.drive_to_point(-50.121, -15.279);
+
+  // grabs third ring
+  chassis.turn_to_point(-50.094, -6);
+  Intake.spin(reverse, 100, pct);
+  Intake2.spin(reverse, 100, pct);
+  
+  chassis.drive_to_point(-50.094, -6);
+
+  
+  
+  
+
+  // Arm.setPosition(0, deg);
+  // Arm.spinTo(-320, deg);
+
+
+  //chassis.turn_to_point(-67, 0);
+  chassis.set_drive_exit_conditions(2, 60, 500);
+  chassis.drive_distance(3);
+  
+  // wait(0.1, sec);
+  ArmPump.set(true);
+  // wait(0.2, sec);
+  Arm.spin(forward, 100, pct);
+
+  // puts onto stake ...code goes here
+  
+  wait(0.6,sec);
+  chassis.set_drive_exit_conditions(2, 60, 1500);
+  
+  chassis.drive_distance(-10);
+  Intake.stop(); 
+  Intake2.stop();
+  
+  // chassis.turn_to_point(-24, 0);
+  // chassis.drive_to_point(-28, 0);
+  
+  Arm.spin(reverse);
+
+  chassis.set_drive_exit_conditions(2, 60, 2000);
+  chassis.set_drive_constants(14, 0.6, 0.02, 4.8, 0);
+
+  chassis.set_turn_exit_conditions(1, 300, 500);
+  chassis.set_turn_constants(12, .4, .035, 3, 15);
+
+  chassis.turn_to_angle(270);
+  chassis.drive_distance(-40);
+
 }
 
 
@@ -285,9 +341,6 @@ void auton_blue_right() {
 //   chassis.drive_distance(20);
 // }
 
-double getACurrPos2Point(double x, double y){
-  return atan2(chassis.get_Y_position() - y, chassis.get_X_position() - x) + 90;
-}
 
 void auton_rush_blue_left() {
   chassis.set_coordinates(60, 24, 90);
@@ -358,6 +411,8 @@ void auton_red_left()  {
 
   chassis.drive_distance(30000);
 }
+
+
 
 void auton_blue_left()  {
 
@@ -430,10 +485,10 @@ void auton_red_right() {
 
   wait(0.3, sec);
   // grabs red ring
-  chassis.turn_to_point(-23.464, -47.399);
+  chassis.turn_to_point(-23, -47);
   Intake.spin(fwd, 100, pct);
   Intake2.spin(fwd, 100, pct);
-  chassis.drive_to_point(-23.464, -47.399);
+  chassis.drive_to_point(-23, -47);
 
   // lets go of first stake
   chassis.turn_to_point(-15, -35);
@@ -448,8 +503,10 @@ void auton_red_right() {
   // grabs second stake
   // chassis.turn_to_point(-58.896, -44.087);
   chassis.turn_to_angle(getACurrPos2Point(0, -55.372)+186);
-  chassis.drive_distance(-25.5);
+  chassis.drive_distance(-24.5);
   Claw.set(true);
+  Arm.spin(reverse, 100, pct);
+  wait(0.3, sec);
 
   // grabs second ring
   // chassis.turn_to_point(-50.121, -15.279);
@@ -458,54 +515,98 @@ void auton_red_right() {
   // chassis.drive_to_point(-50.121, -15.279);
 
   // grabs third ring
-  chassis.turn_to_point(-53.121, 5);
+  chassis.turn_to_point(-50.094, -6);
   Intake.spin(reverse, 100, pct);
   Intake2.spin(reverse, 100, pct);
-  chassis.drive_to_point(-53.121, 5);
-
-  Intake.stop();
-  Intake2.stop();
-
-  Arm.setPosition(0, deg);
-  Arm.spinTo(-320, deg);
-
-  chassis.turn_to_point(-70.2, 0);
   
-  wait(0.1, sec);
+  chassis.drive_to_point(-50.094, -6);
+
+  
+  
+  
+
+  // Arm.setPosition(0, deg);
+  // Arm.spinTo(-320, deg);
+
+
+  //chassis.turn_to_point(-67, 0);
+  chassis.set_drive_exit_conditions(2, 60, 500);
+  chassis.drive_distance(3);
+  
+  // wait(0.1, sec);
   ArmPump.set(true);
-  wait(0.2, sec);
+  // wait(0.2, sec);
   Arm.spin(forward, 100, pct);
 
   // puts onto stake ...code goes here
-  wait(0.5,sec);
+  
+  wait(0.6,sec);
+  chassis.set_drive_exit_conditions(2, 60, 1500);
+  
   chassis.drive_distance(-10);
+  Intake.stop(); 
+  Intake2.stop();
+  
+  // chassis.turn_to_point(-24, 0);
+  // chassis.drive_to_point(-28, 0);
+  
+  Arm.spin(reverse);
+
+  chassis.set_drive_exit_conditions(2, 60, 2000);
+  chassis.set_drive_constants(14, 0.6, 0.02, 4.8, 0);
+
+  chassis.set_turn_exit_conditions(1, 300, 500);
+  chassis.set_turn_constants(12, .4, .035, 3, 15);
+
+  chassis.turn_to_angle(270);
+  chassis.drive_distance(-40);
+
 }
 
 
 
 //skills functions
 
+// William's life >:) - Aditi 
+
 
 void firstStake() {
-  chassis.set_coordinates(-59, 0, 0);
-  chassis.turn_to_point(-67, 17);
+
+  chassis.set_coordinates(-59, -24, 270);
+  chassis.set_heading(270);
+
+  // grab stake
   chassis.drive_to_point(-47, -24);
   Claw.set(true);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
+
+  // grab 1st ring
   chassis.drive_to_point(-24, -24);
+
+  // grab 2nd ring
   chassis.turn_to_point(-23, -47);
   chassis.drive_to_point(-23, -47);
+
+  // grab 3rd ring
   chassis.turn_to_point(-47, -47);
   chassis.drive_to_point(-47, -47);
 
+  // grab 4th ring
   chassis.drive_to_point(-59, -47);
+
+  // grab 5th ring
   chassis.turn_to_point(-47, -59);
   chassis.drive_to_point(-47, -59);
+
+  // grab 6th ring
   chassis.turn_to_point(0, -59);
   chassis.drive_to_point(0, -59);
+
+  // drop stake
   chassis.turn_to_point(-59, -59);
   chassis.drive_to_point(-59, -59);
+
   chassis.turn_to_point(-47, -47);
   Claw.set(false);
 }
@@ -514,41 +615,79 @@ void firstStake() {
 void secondStake() { 
   chassis.drive_to_point(-47, -24);
   chassis.turn_to_point(-47, -47);
+
+  // grab 2nd stake
   chassis.drive_to_point(-47, 24);
   Claw.set(true);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
+
+  // grab 1st ring 
   chassis.turn_to_point(-23, 23);
   chassis.drive_to_point(-23, 23);
+
+  // grab 2nd ring
   chassis.turn_to_point(-23, 47);
   chassis.drive_to_point(-23, 47);
+
+  // grab 3rd ring
   chassis.turn_to_point(-47, 47);
   chassis.drive_to_point(-47, 47);
+
+  // grab 4th ring 
   chassis.drive_to_point(-59, 47);
+
+  // grab 5th ring 
   chassis.turn_to_point(-47, 59);
   chassis.drive_to_point(-47, 59);
-  chassis.turn_to_point(0, 59);
-  chassis.drive_to_point(0, 59);
-  chassis.turn_to_point(-61, 61);
-  chassis.drive_to_point(-61, 61);
-  chassis.turn_to_point(-47, -47);
+
+  // drop stake 
   Claw.set(false);
+
+
+  // chassis.turn_to_point(-61, 61);
+  // chassis.drive_to_point(-61, 61);
+  // chassis.turn_to_point(-47, -47);
+  // Claw.set(false);
 }
 
 void thirdStake() {
+
+  // intake ring 
+  Intake.stop();
+  chassis.turn_to_point(0, 59);
+  chassis.drive_to_point(0, 59);
+  
+
+  // get 3rd stake 
   chassis.turn_to_point(45, 29);
   chassis.drive_to_point(45, 29);
+
   chassis.turn_to_point(46, 39);
-  chassis.drive_to_point(47, 0);
+  chassis.turn_to_angle(chassis.get_absolute_heading() + 180);
+  chassis.drive_distance(-39);
+  
   Claw.set(true);
+  wait(0.3, sec);
+
+  Intake.spin(forward);
+  // grab ring 
   chassis.turn_to_point(23, -23);
   chassis.drive_to_point(23, -23);
+
+  // grab ring 
   chassis.turn_to_point(23, -47);
   chassis.drive_to_point(23, -47);
+
+  // grab ring 
   chassis.turn_to_point(51, -47);
   chassis.drive_to_point(51, -47);
+
+  // grab ring 
   chassis.turn_to_point(44, -63);
   chassis.drive_to_point(44, -63);
+
+  // drop stake in positive corner 
   chassis.turn_to_point(32, -63);
   chassis.drive_to_point(63, 65);
   Claw.set(false);
@@ -688,10 +827,10 @@ void usercontrol(void) {
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(forward);
       }
-      if (Controller1.ButtonL1.pressing()) {
+      if (Controller1.ButtonL2.pressing()) {
         Intake.spin(fwd, 100, pct);
         Intake2.spin(fwd, 100, pct);
-      } else if (Controller1.ButtonL2.pressing()) {
+      } else if (Controller1.ButtonL1.pressing()) {
         Intake.spin(reverse, 100, pct);
         Intake2.spin(fwd, 100, pct);
       } else {

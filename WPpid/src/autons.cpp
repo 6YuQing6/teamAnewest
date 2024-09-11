@@ -13,7 +13,7 @@ void default_constants(){
   chassis.set_turn_constants(10, .4, .035, 3, 15);
   chassis.set_swing_constants(12, .3, .001, 2, 15);
   chassis.set_drive_exit_conditions(2, 60, 2000);
-  chassis.set_turn_exit_conditions(1, 300, 2000);
+  chassis.set_turn_exit_conditions(1, 300, 1500);
   chassis.set_swing_exit_conditions(1, 300, 2000);
 }
 
