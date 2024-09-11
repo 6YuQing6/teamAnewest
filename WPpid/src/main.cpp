@@ -375,6 +375,7 @@ void auton_rush_blue_left() {
 
 void auton_red_left()  {
 
+  chassis.set_turn_constants(10, .4, .035, 4, 15);
   chassis.set_heading(270);
   chassis.set_coordinates(-50, 24, 270);
   chassis.set_heading(270);
@@ -386,10 +387,10 @@ void auton_red_left()  {
   Claw.set(true);
   wait(0.5, sec);
  
-  chassis.turn_to_point(-5.583, 37.703);
+  chassis.turn_to_point(-4.583, 37.703);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
-  chassis.drive_to_point(-5.583, 37.703);
+  chassis.drive_to_point(-4.583, 37.703);
 
   chassis.set_drive_exit_conditions(2, 60, 3000);
 
@@ -420,6 +421,7 @@ void auton_red_left()  {
 
 void auton_blue_right()  {
 
+  chassis.set_turn_constants(10, .4, .035, 4, 15);
   chassis.set_heading(90);
   chassis.set_coordinates(50, 24, 90);
   chassis.set_heading(90);
@@ -580,8 +582,10 @@ void firstStake() {
   chassis.set_heading(270);
 
   // grab stake
-  chassis.drive_to_point(-55, -24);
+  chassis.turn_to_angle(270);
+  chassis.drive_distance(-8);
   Claw.set(true);
+  wait(0.3, sec);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
 
@@ -624,6 +628,7 @@ void secondStake() {
   // grab 2nd stake
   chassis.drive_to_point(-47, 24);
   Claw.set(true);
+  wait(0.3, sec);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
 
@@ -705,7 +710,7 @@ void autonomous(void)
   // auton_blue_left();
   firstStake();
   secondStake();
-  thirdStake();
+  // thirdStake();
   
  // tank_odom_test();
   // auton_red_left();
