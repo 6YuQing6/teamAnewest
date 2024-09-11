@@ -190,26 +190,10 @@ void pre_auton(void) {
     // } else if (current_auton_selection == 8){
     //   current_auton_selection = 0;
     // }
+    Brain.Screen.printAt(50, 50, "Hello UwU"); //very important do not delete
     task::sleep(10);
   }
 }
-//void auton_red_left() {
-  
-  // chassis.set_coordinates(-50, 23, 90);
-  // Claw.set(true); //change later after sayansh tests it
-  // chassis.drive_to_point(-23.5, 23.5);
-  // //Get the mobile goal
-  // Claw.set(false);
-  // chasis.turnFor(-90, degrees);
-  // chassis.drive_to_point(-23.776, 40.5);
-  // chassis.turnFor(180, degrees);
-  // chassis.drive_to_point(-23.8, 32.4);
-  // chassis.turnFor(-120, degrees);
-  // chassis.drive_to_point(-11.6, 38.7);
-  // chassis.turnFor(150, degrees);
-  // chassis.drive_to_point(-10.7, 12.5);
-//}
-
 
 double getACurrPos2Point(double x, double y){
   return atan2(chassis.get_Y_position() - y, chassis.get_X_position() - x) + 90;
@@ -250,11 +234,6 @@ void auton_blue_left() {
   Arm.spin(reverse, 100, pct);
   wait(0.3, sec);
 
-  // grabs second ring
-  // chassis.turn_to_point(-50.121, -15.279);
-  // Intake.spin(reverse, 100, pct);
-  // Intake2.spin(reverse, 100, pct);
-  // chassis.drive_to_point(-50.121, -15.279);
 
   // grabs third ring
   chassis.turn_to_point(50.094, -6);
@@ -262,14 +241,6 @@ void auton_blue_left() {
   Intake2.spin(reverse, 100, pct);
   
   chassis.drive_to_point(50.094, -6);
-
-  
-  
-  
-
-  // Arm.setPosition(0, deg);
-  // Arm.spinTo(-320, deg);
-
 
   //chassis.turn_to_point(-67, 0);
   chassis.set_drive_exit_conditions(2, 60, 500);
@@ -304,74 +275,6 @@ void auton_blue_left() {
   chassis.drive_distance(-40);
 
 }
-
-
-
-
-
-// void auton_blue_left() {
-//   chassis.set_heading(270);
-//   chassis.set_coordinates(60, 24, 270);
-//   chassis.set_heading(270);
-//   Claw.set(false); //change later after sayansh tests it
-//   chassis.turn_to_point(200, 22);
-//   chassis.drive_to_point(16, 23);
-//   //Get the mobile goal
-  
-//   Claw.set(true);
-//   wait(0.5, sec);
-
-//   //chassis.set_coordinates(-15, 24,270);
-//   chassis.turn_to_point(21, 58);
-//   Intake.spin(forward, 100, pct);
-//   Intake2.spin(forward, 100, pct);
-//   chassis.drive_to_point(21, 52);
-//   //ring 2
-//   wait(0.5, sec);
-//   chassis.drive_distance(-12);
-//   chassis.turn_to_point(2,50);
-//   chassis.drive_to_point(2,50);
-//   chassis.drive_distance(10);
-//   wait(2, sec);
- 
-//   //ring 3
-//   chassis.turn_to_point(-8, 32);
-//   chassis.drive_distance(-20);
-//   chassis.turn_to_point(6, 50);
-//   chassis.drive_distance(20);
-// }
-
-
-void auton_rush_blue_left() {
-  chassis.set_coordinates(60, 24, 90);
-  chassis.set_heading(90);
-  Claw.set(false); //change later after sayansh tests it
-  chassis.turn_to_point(200, 22);
-  chassis.drive_distance(-40);
-  //Get the mobile goal
-  
-  Claw.set(true);
-  wait(0.5, sec);
-  Intake.spin(forward, 100, pct);
-  Intake2.spin(forward, 100, pct);
-
-
-  //ring 2
-  chassis.turn_to_point(6, 41);
-  chassis.drive_to_point(6, 41);
-  chassis.drive_distance(-12);
-  chassis.turn_to_point(3,50);
-  chassis.drive_to_point(3,50);
-  chassis.drive_distance(-20);
-  wait(2, sec);
- 
-  //ring 3
-  chassis.turn_to_point(22, 47);
-  chassis.drive_distance(22, 47);
-
-}
-
-
 
 void auton_red_left()  {
 
@@ -417,8 +320,6 @@ void auton_red_left()  {
   Arm.spin(reverse);
 }
 
-
-
 void auton_blue_right()  {
 
   chassis.set_turn_constants(10, .4, .035, 4, 15);
@@ -462,26 +363,6 @@ void auton_blue_right()  {
   chassis.drive_to_point(12.464, 11.047); 
   Arm.spin(reverse);
 }
-
-///////////////////////////////////////////////////////////////
-void auton_red_right_rush() {
-  chassis.set_coordinates(-51.114, -28.69, 270);
-  Claw.set(false);
-  chassis.turn_to_point(-6.245, -43.094);
-  chassis.drive_to_point(-6.245, -43.094);
-
-  Claw.set(true);
-  Intake.spin(forward, 100, pct);
-  Intake2.spin(forward, 100, pct);
-
-  chassis.turn_to_point(-21.477, -46.405);
-  chassis.drive_to_point(-21.477, -46.405);
-  
-  chassis.turn_to_point(-58.565, -24.881);
-  chassis.drive_to_point(-58.565, -24.881);
-  
-}
-  
 
 void auton_red_right() {
   chassis.set_coordinates(-50, -24, 270);
@@ -569,13 +450,8 @@ void auton_red_right() {
 
 }
 
-
-
 //skills functions
-
 // William's life >:) - Aditi 
-
-
 void firstStake() {
 
   chassis.set_coordinates(-59, -24, 270);
@@ -619,7 +495,6 @@ void firstStake() {
   chassis.turn_to_point(-47, -47);
   Claw.set(false);
 }
-
 
 void secondStake() { 
   chassis.drive_to_point(-47, -24);
@@ -703,75 +578,20 @@ void thirdStake() {
   Claw.set(false);
 }
 
-
 void autonomous(void) 
 {
   //vex::task runOdom(odom_test);
-  // auton_blue_left();
+  
+  /////Autons/////
+  //auton_blue_left();
+  // auton_red_left();
+  // auton_blue_right();
+  // auton_red_right();
+
+  /////Skills/////
   firstStake();
   secondStake();
   // thirdStake();
-  
- // tank_odom_test();
-  // auton_red_left();
-  //chassis.set_coordinates(0, 0, 0);
- //chassis.turn_to_point(10, 10);
-  //chassis.drive_to_point(0, 10);
-  // chassis.set_coordinates(0, 0, 0);
-  // while(1){
-
-  //   Brain.Screen.printAt(0,50, "X: %f", chassis.get_X_position());
-  //   Brain.Screen.printAt(0,70, "Y: %f", chassis.get_Y_position());
-  //   Brain.Screen.printAt(0,90, "Heading: %f", chassis.get_absolute_heading());
-  //   Brain.Screen.printAt(0,110, "ForwardTracker: %f", chassis.get_ForwardTracker_position());
-  //   Brain.Screen.printAt(0,130, "SidewaysTracker: %f", chassis.get_SidewaysTracker_position());
-  //   chassis.odom.update_position(chassis.get_ForwardTracker_position(), chassis.get_SidewaysTracker_position(), chassis.get_absolute_heading());
-  //   task::sleep(20);
-  //   Brain.Screen.clearScreen();
-  // }
-
-
-  // chassis.set_coordinates(-50, 23, 90);
-  // Claw.set(true); //change later after sayansh tests it
-  // chassis.drive_to_point(-23.5, 23.5);
-  //Get the mobile goal
-  // Claw.set(false);
-  // chasis.turnFor(-90, degrees);
-  // chassis.drive_to_point(-23.776, 40.5);
-  // chassis.turnFor(180, degrees);
-  // chassis.drive_to_point(-23.8, 32.4);
-  // chassis.turnFor(-120, degrees);
-  // chassis.drive_to_point(-11.6, 38.7);
-  // chassis.turnFor(150, degrees);
-  // chassis.drive_to_point(-10.7, 12.5);
-
-//   current_auton_selection= 4;
-//   switch(current_auton_selection){  
-//     case 0:
-//       drive_test(); //This is the default auton, if you don't select from the brain.
-//       break;        //Change these to be your own auton functions in order to use the auton selector.
-//     case 1:         //Tap the screen to cycle through autons.
-//       drive_test();
-//       break;
-//     case 2:
-//       turn_test();
-//       break;
-//     case 3:
-//       swing_test();
-//       break;
-//     case 4:
-//       full_test();
-//       break;
-//     case 5:
-//       odom_test();
-//       break;
-//     case 6:
-//       tank_odom_test();
-//       break;
-//     case 7:
-//       holonomic_odom_test();
-//       break;
-//  }
 }
 
 /*---------------------------------------------------------------------------*/
@@ -794,108 +614,8 @@ void usercontrol(void) {
   bool Hang_toggle = false;
 
 
-
   while (1) {
-    // calculate the drivetrain motor velocities from the controller joystick axies
-      // left = Axis3
-      // right = Axis2
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position();
-      int drivetrainRightSideSpeed = Controller1.Axis2.position();
-      
-      // check if the value is inside of the deadband range
-      if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
-        // check if the left motor has already been stopped
-        if (DrivetrainLNeedsToBeStopped_Controller1) {
-          // stop the left drive motor
-          LeftDriveSmart.stop();
-          // tell the code that the left motor has been stopped
-          DrivetrainLNeedsToBeStopped_Controller1 = false;
-        }
-      } else {
-        // reset the toggle so that the deadband code knows to stop the left motor nexttime the input is in the deadband range
-        DrivetrainLNeedsToBeStopped_Controller1 = true;
-      }
-      // check if the value is inside of the deadband range
-      if (drivetrainRightSideSpeed < 5 && drivetrainRightSideSpeed > -5) {
-        // check if the right motor has already been stopped
-        if (DrivetrainRNeedsToBeStopped_Controller1) {
-          // stop the right drive motor
-          RightDriveSmart.stop();
-          // tell the code that the right motor has been stopped
-          DrivetrainRNeedsToBeStopped_Controller1 = false;
-        }
-      } else {
-        // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
-        DrivetrainRNeedsToBeStopped_Controller1 = true;
-      }
-      
-      // only tell the left drive motor to spin if the values are not in the deadband range
-      if (DrivetrainLNeedsToBeStopped_Controller1) {
-        LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
-        LeftDriveSmart.spin(forward);
-      }
-      // only tell the right drive motor to spin if the values are not in the deadband range
-      if (DrivetrainRNeedsToBeStopped_Controller1) {
-        RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
-        RightDriveSmart.spin(forward);
-      }
-      if (Controller1.ButtonL2.pressing()) {
-        Intake.spin(fwd, 100, pct);
-        Intake2.spin(fwd, 100, pct);
-      } else if (Controller1.ButtonL1.pressing()) {
-        Intake.spin(reverse, 100, pct);
-        Intake2.spin(fwd, 100, pct);
-      } else {
-        Intake.stop();
-        Intake2.stop();
-      }
-
-      if (Claw_toggle) {             
-        Claw.set(true);
-      } else {
-        Claw.set(false);
-      }
-
-      if (Controller1.ButtonA.pressing()) {
-        Claw_toggle = !Claw_toggle;
-        waitUntil(!Controller1.ButtonA.pressing());
-      }
-     
-
-// up and down button
-      if (Arm_toggle) {             
-        ArmPump.set(true);
-      } else {
-        ArmPump.set(false);
-      }
-
-      if (Controller1.ButtonUp.pressing()) {
-        Arm_toggle = true;
-        waitUntil(!Controller1.ButtonUp.pressing());
-      }
-      else if (Controller1.ButtonDown.pressing()) {
-        Arm_toggle = false;
-        waitUntil(!Controller1.ButtonDown.pressing());
-      }
-
-
-// y button
-      if (Hang_toggle) {             
-        HangPump.set(true);
-      } else {
-        HangPump.set(false);
-      }
-
-      if (Controller1.ButtonY.pressing()) {
-        Hang_toggle = !Hang_toggle;
-        waitUntil(!Controller1.ButtonY.pressing());
-      }
-     
-
-
-
-
-    // This is the main execution loop for the user control program.
+      // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
 
@@ -906,12 +626,116 @@ void usercontrol(void) {
 
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
-    chassis.control_arcade();
+    // // calculate the drivetrain motor velocities from the controller joystick axies
+    //   // left = Axis3
+    //   // right = Axis2
+    //   int drivetrainLeftSideSpeed = Controller1.Axis3.position();
+    //   int drivetrainRightSideSpeed = Controller1.Axis2.position();
+      
+    //   // check if the value is inside of the deadband range
+    //   if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
+    //     // check if the left motor has already been stopped
+    //     if (DrivetrainLNeedsToBeStopped_Controller1) {
+    //       // stop the left drive motor
+    //       LeftDriveSmart.stop();
+    //       // tell the code that the left motor has been stopped
+    //       DrivetrainLNeedsToBeStopped_Controller1 = false;
+    //     }
+    //   } else {
+    //     // reset the toggle so that the deadband code knows to stop the left motor nexttime the input is in the deadband range
+    //     DrivetrainLNeedsToBeStopped_Controller1 = true;
+    //   }
+    //   // check if the value is inside of the deadband range
+    //   if (drivetrainRightSideSpeed < 5 && drivetrainRightSideSpeed > -5) {
+    //     // check if the right motor has already been stopped
+    //     if (DrivetrainRNeedsToBeStopped_Controller1) {
+    //       // stop the right drive motor
+    //       RightDriveSmart.stop();
+    //       // tell the code that the right motor has been stopped
+    //       DrivetrainRNeedsToBeStopped_Controller1 = false;
+    //     }
+    //   } else {
+    //     // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
+    //     DrivetrainRNeedsToBeStopped_Controller1 = true;
+    //   }
+      
+    //   // only tell the left drive motor to spin if the values are not in the deadband range
+    //   if (DrivetrainLNeedsToBeStopped_Controller1) {
+    //     LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
+    //     LeftDriveSmart.spin(forward);
+    //   }
+    //   // only tell the right drive motor to spin if the values are not in the deadband range
+    //   if (DrivetrainRNeedsToBeStopped_Controller1) {
+    //     RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
+    //     RightDriveSmart.spin(forward);
+    //   }
 
 
-    if(Controller1.ButtonL1.pressing()) {
-      Intake.spin(fwd, 100, pct);
-      Intake2.spin(fwd, 100, pct);
+
+    // if (Controller1.ButtonL2.pressing()) {
+    //   Intake.spin(fwd, 100, pct);
+    //   Intake2.spin(fwd, 100, pct);
+    // } else if (Controller1.ButtonL1.pressing()) {
+    //   Intake.spin(reverse, 100, pct);
+    //   Intake2.spin(fwd, 100, pct);
+    // } else {
+    //   Intake.stop();
+    //   Intake2.stop();
+    // }
+
+    if (Claw_toggle) {   /////back claw goal holder mech////          
+      Claw.set(true);
+    } else {
+      Claw.set(false);
+    }
+
+    if (Controller1.ButtonA.pressing()) {
+      Claw_toggle = !Claw_toggle;
+      waitUntil(!Controller1.ButtonA.pressing());
+    }
+    
+    ////////Arm piston stuffff//////////////
+    if (Arm_toggle) {             
+      ArmPump.set(true);
+    } else {
+      ArmPump.set(false);
+    }
+
+    // if (Controller1.ButtonUp.pressing()) { /// old code (2 button for arm piston) ////
+    //   Arm_toggle = true;
+    //   waitUntil(!Controller1.ButtonUp.pressing());
+    // }
+    // else if (Controller1.ButtonDown.pressing()) {
+    //   Arm_toggle = false;
+    //   waitUntil(!Controller1.ButtonDown.pressing());
+    // }
+
+    if (Controller1.ButtonUp.pressing()) { ////////Arm piston stuffff//////////////
+      Arm_toggle = !Arm_toggle;
+      waitUntil(!Controller1.ButtonUp.pressing());
+    }
+
+
+// y button ///// Useless rn cause we do not have the side ring grabby arm
+    // if (Hang_toggle) {             
+    //   HangPump.set(true);
+    // } else {
+    //   HangPump.set(false);
+    // }
+
+    // if (Controller1.ButtonY.pressing()) {
+    //   Hang_toggle = !Hang_toggle;
+    //   waitUntil(!Controller1.ButtonY.pressing());
+    // }
+
+    if(Controller1.ButtonL1.pressing()) { //intake stuff
+      if (Controller1.ButtonR1.pressing()){ //makes intaking slower when arm is rotating down
+        Intake.spin(fwd, 70, pct);
+        Intake2.spin(fwd, 70, pct);
+      } else {
+        Intake.spin(fwd, 100, pct);
+        Intake2.spin(fwd, 100, pct);
+      }
     } else if (Controller1.ButtonL2.pressing()) {
       Intake.spin(reverse, 100, pct);
       Intake2.spin(reverse, 100, pct);
@@ -928,6 +752,9 @@ void usercontrol(void) {
     } else {
       Arm.stop(hold); // change to hold or coast or brake
     }
+
+    chassis.control_tank(); //////////////////////////////////////////////CONTROL TYPE (ARCADE or TANK) //////////////////////////////////////////////////////////
+
     wait(20, msec); // Sleep the task for a short amount of time to
 
   }
