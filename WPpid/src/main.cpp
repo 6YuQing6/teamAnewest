@@ -487,21 +487,23 @@ void firstStake() {
   // grab 6th ring
   chassis.turn_to_point(0, -59);
   chassis.drive_to_point(0, -59);
+  
+  // to prevent the bot from touching the wall stake
+  chassis.turn_to_point(0, -43);
+  chassis.drive_to_point(0, -43);
 
   // drop stake
   chassis.turn_to_point(-59, -59);
   chassis.drive_to_point(-59, -59);
-
-  chassis.turn_to_point(-47, -47);
   Claw.set(false);
 }
 
 void secondStake() { 
-  chassis.drive_to_point(-47, -24);
-  chassis.turn_to_point(-47, -47);
 
   // grab 2nd stake
+  chassis.turn_to_point(-47, 24);
   chassis.drive_to_point(-47, 24);
+
   Claw.set(true);
   wait(0.3, sec);
   Intake.spin(forward, 100, pct);
@@ -526,7 +528,7 @@ void secondStake() {
   chassis.turn_to_point(-47, 59);
   chassis.drive_to_point(-47, 59);
 
-  // drop stake 
+  // drop stake in negative corner
   Claw.set(false);
 
 
