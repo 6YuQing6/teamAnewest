@@ -233,7 +233,7 @@ void auton_blue_left() {
 
   // grabs second stake
   // chassis.turn_to_point(-58.896, -44.087);
-  chassis.turn_to_angle(getACurrPos2Point(0, -55.372)+180);
+  chassis.turn_to_angle(getACurrPos2Point(0, -47.256)+180);
   chassis.drive_distance(-25);
   Claw.set(true);
   Arm.spin(reverse, 100, pct);
@@ -398,7 +398,7 @@ void auton_red_right() {
 
   // grabs second stake
   // chassis.turn_to_point(-58.896, -44.087);
-  chassis.turn_to_angle(getACurrPos2Point(0, -55.372)+180);
+  chassis.turn_to_angle(getACurrPos2Point(0, -47.256)+180);
   chassis.drive_distance(-24.5);
   Claw.set(true);
   Arm.spin(reverse, 100, pct);
