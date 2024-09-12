@@ -545,44 +545,74 @@ void secondStake() {
 
 void thirdStake() {
 
-  // intake ring 
+  // intake 1st red ring and hold it
   Intake.stop();
   chassis.turn_to_point(0, 59);
   chassis.drive_to_point(0, 59);
   
 
-  // get 3rd stake 
-  chassis.turn_to_point(45, 29);
+  // old code
+  /*chassis.turn_to_point(45, 29);
   chassis.drive_to_point(45, 29);
 
   chassis.turn_to_point(46, 39);
   chassis.turn_to_angle(chassis.get_absolute_heading() + 180);
   chassis.drive_distance(-39);
+  */
+
+  // ram into 3rd stake and push to the corner
+  chassis.turn_to_point(57, 15);
+  chassis.drive_to_point(57, 15); // get behind stake
+  chassis.turn_to_point(65, 65); 
+  chassis.drive_to_point(65, 65); // move stake to corner
   
+  // start claw 
   Claw.set(true);
   wait(0.3, sec);
 
+  // grab 4th stake 
+  chassis.turn_to_point(68, 71); // turn 180 degrees, might need to adjust this
+  chassis.drive_distance(-66); 
+
+  // start intake
   Intake.spin(forward);
-  // grab ring 
+
+  // grab 2nd ring 
   chassis.turn_to_point(23, -23);
   chassis.drive_to_point(23, -23);
 
-  // grab ring 
-  chassis.turn_to_point(23, -47);
-  chassis.drive_to_point(23, -47);
+  // grab 3rd ring 
+  chassis.turn_to_point(23, -46);
+  chassis.drive_to_point(23, -46);
 
-  // grab ring 
-  chassis.turn_to_point(51, -47);
-  chassis.drive_to_point(51, -47);
+  // grab 4th ring (from stack)
+  chassis.turn_to_point(46.93, -59);
+  chassis.drive_to_point(46.93, -59);
 
-  // grab ring 
-  chassis.turn_to_point(44, -63);
-  chassis.drive_to_point(44, -63);
+  // grab 5th ring (from stack)
+  chassis.drive_distance(-10); // drive back a bit 
+  chassis.turn_to_point(46.2, -47.076); // turn to next ring stack 
+  chassis.drive_to_point(46.2, -47.076); // get 5th ring 
 
-  // drop stake in positive corner 
-  chassis.turn_to_point(32, -63);
-  chassis.drive_to_point(63, 65);
-  Claw.set(false);
+  // grab 6th ring (from stack)
+  chassis.turn_to_point(58.909, -47.076);
+  chassis.drive_to_point(58.909, -47.076);
+
+  Intake.stop(); // stop intake
+  Intake2.stop(); 
+
+  // drop stake in positive corner (on top of the blue ring there)
+  chassis.turn_to_point(53.066, -33.783); // turn backwards
+  chassis.drive_distance(-33); 
+
+  Arm.spin(reverse, 100, pct); // lift up arm
+  Claw.set(false); // move back and drop stake
+  wait(0.1, sec);
+
+  // Hang
+  chassis.drive_to_point(11.578, -12.601); // move torwards the ladder for hanging
+  chassis.drive_to_point(11.578, -12.601);
+  
 }
 
 void williamThirdStake() {
@@ -669,7 +699,7 @@ void autonomous(void)
   /////Skills/////
   firstStake();
   secondStake();
-  // thirdStake();
+  thirdStake();
 }
 
 /*---------------------------------------------------------------------------*/
