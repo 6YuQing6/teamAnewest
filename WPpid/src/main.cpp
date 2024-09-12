@@ -692,20 +692,14 @@ void autonomous(void)
   
   /////Autons/////
   // auton_blue_left();
-  // auton_red_left();
+  auton_red_left();
   // auton_blue_right();
   // auton_red_right();
 
   /////Skills/////
-<<<<<<< HEAD
   // firstStake();
   // secondStake();
   // thirdStake();
-=======
-  firstStake();
-  secondStake();
-  thirdStake();
->>>>>>> 55fed14f11e59d5502f353bae65bba38c5d91578
 }
 
 /*---------------------------------------------------------------------------*/
