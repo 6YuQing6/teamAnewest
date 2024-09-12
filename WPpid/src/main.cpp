@@ -604,7 +604,7 @@ void williamThirdStake() {
   chassis.drive_to_point(62.314, 57.008);
 
   chassis.set_drive_exit_conditions(2, 60, 2000);
-  chassis.drive_distance(-5); // makes sure we dont hit the goal as we are turning
+  chassis.drive_distance(7); // makes sure we dont hit the goal as we are turning
 
   //Grabbing last stake/middle right stake
   chassis.turn_to_angle(getACurrPos2Point(47.447, 0.778)+180); // MATH :sunglasses emoji:
