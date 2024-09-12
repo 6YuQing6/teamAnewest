@@ -295,10 +295,10 @@ void auton_red_left()  {
   Claw.set(true);
   wait(0.5, sec);
  
-  chassis.turn_to_point(-4.583, 37.703);
+  chassis.turn_to_point(-6.583, 37.703);
   Intake.spin(forward, 100, pct);
   Intake2.spin(forward, 100, pct);
-  chassis.drive_to_point(-4.583, 37.703);
+  chassis.drive_to_point(-6.583, 37.703);
 
   chassis.set_drive_exit_conditions(2, 60, 3000);
 
@@ -346,8 +346,8 @@ void auton_blue_right()  {
 
   chassis.set_drive_exit_conditions(2, 60, 3000);
 
-  chassis.turn_to_point(4.583, 49.127);
-  chassis.drive_to_point(4.583, 49.127);
+  chassis.turn_to_point(6.583, 49.127);
+  chassis.drive_to_point(6.583, 49.127);
 
   chassis.set_drive_exit_conditions(2, 60, 2000);
 
@@ -661,14 +661,14 @@ void autonomous(void)
   //vex::task runOdom(odom_test);
   
   /////Autons/////
-  //auton_blue_left();
+  // auton_blue_left();
   // auton_red_left();
   // auton_blue_right();
   // auton_red_right();
 
   /////Skills/////
-  firstStake();
-  secondStake();
+  // firstStake();
+  // secondStake();
   // thirdStake();
 }
 
